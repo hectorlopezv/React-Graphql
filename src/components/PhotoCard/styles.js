@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { fadeIn } from '../styles/animation'
 
 export const Container = styled.article`
+  min-height: 200px;
   &:not(:first-child) {
     margin-top: 20px;
   }
