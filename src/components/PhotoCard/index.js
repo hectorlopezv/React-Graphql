@@ -1,9 +1,10 @@
-import React from 'react'
-import { ImgWrapper, Img, Button, Container, Link } from './styles'
-import { HiOutlineHeart } from 'react-icons/hi'
-import { MdFavorite } from 'react-icons/md'
+import React, { useCallback } from 'react'
+import { ImgWrapper, Img, Container, Link } from './styles'
+
 import { useLocalStorage } from '../../hooks/useLocalStorage'
 import { useNearScreen } from '../../hooks/useNearScreen'
+import { useMuationToogleLike } from '../../hooks/ToogleLikeMutation'
+import FavButton from '../FavButton'
 
 const PhotoCard = ({
   id,
@@ -11,10 +12,17 @@ const PhotoCard = ({
   src = 'https://res.cloudinary.com/midudev/image/upload/w_150/v1555671700/category_rabbits.jpg'
 }) => {
   const key = `like-${id}`
-
   const [liked, setLiked] = useLocalStorage(key, false)
   const [show, element] = useNearScreen()
-  const Icon = liked ? MdFavorite : HiOutlineHeart
+  const { mutation, mutationLoading, mutationError } = useMuationToogleLike()
+  const handleFavClick = useCallback(() => {
+    !liked && mutation({
+      variables: {
+        input: { id }
+      }
+    })
+    setLiked(!liked)
+  }, [liked])
 
   return (
     <Container ref={element}>
@@ -25,10 +33,7 @@ const PhotoCard = ({
               <Img src={src} alt='No Image' />
             </ImgWrapper>
           </Link>
-          <Button onClick={() => setLiked(!liked)}>
-            <Icon size={'32px'} />
-            {likes} !likes
-          </Button>
+          <FavButton liked={liked} likes={likes} onClick={handleFavClick} />
         </>
       )}
     </Container>
