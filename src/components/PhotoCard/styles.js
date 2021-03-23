@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { fadeIn } from '../styles/animation'
-
+import { Link as LinkF } from '@reach/router'
 export const Container = styled.article`
   min-height: 200px;
   &:not(:first-child) {
@@ -8,7 +8,7 @@ export const Container = styled.article`
   }
 `
 
-export const Link = styled.a``
+export const Link = styled(LinkF)``
 
 export const ImgWrapper = styled.div`
   border-radius: 10px;

@@ -28,7 +28,7 @@ const PhotoCard = ({
     <Container ref={element}>
       {show && (
         <>
-          <Link href={`/?detail=${id}`}>
+          <Link to={`/detail/${id}`}>
             <ImgWrapper>
               <Img src={src} alt='No Image' />
             </ImgWrapper>

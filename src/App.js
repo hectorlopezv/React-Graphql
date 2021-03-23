@@ -1,26 +1,38 @@
 import React from 'react'
-import ListCategory from './components/ListCategory'
-import ListPhotoCards from './components/ListPhotoCards'
 import Logo from './components/Logo'
-
 import { GlobalStyle } from './components/styles/globalStyles'
-import { PhotoCardWithQuery } from './components/container/PhotoCardWithQuery'
+import Home from './components/pages/Home'
+import Detail from './components/pages/Details'
+import User from './components/pages/User'
+import Favs from './components/pages/Favs'
+import NotRegisterUser from './components/pages/NotRegisterUser'
+import NavBar from './components/NavBar'
+import { Router } from '@reach/router'
+import Context from './Context'
+
 
 const App = () => {
-  const urlParams = new window.URLSearchParams(window.location.search)
-  const detailId = urlParams.get('detail')
-  console.log(detailId)
   return (
     <>
       <GlobalStyle />
       <Logo />
-      {detailId ? (<PhotoCardWithQuery id={detailId} />) : (
-        <>
-          <ListCategory />
-          <ListPhotoCards />
-        </>
-      )
-      }
+      <Context.Consumer>
+        {({ isAuth }) =>
+          isAuth ? (
+            <Router>
+              <Favs path='/favorites' />
+              <User path='/user' />
+            </Router>
+          ) : (
+            <Router>
+              <NotRegisterUser path='/favorites' />
+              <NotRegisterUser path='/user' />
+            </Router>
+          )
+        }
+      </Context.Consumer>
+
+      <NavBar />
     </>
   )
 }
