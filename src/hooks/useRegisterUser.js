@@ -6,7 +6,7 @@ const REGISTER_MUTATION = gql`
   }
 `
 
-export const useAuthUser = () => {
+export const useRegisterUser = () => {
   const [
     mutation,
     { loading: mutationLoading, error: mutationError }

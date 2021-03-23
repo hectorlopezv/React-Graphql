@@ -7,7 +7,6 @@ const Provider = ({ children }) => {
   const value = {
     isAuth,
     activateAuth: () => {
-     
       setisAuth(true)
     }
   }

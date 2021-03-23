@@ -20,6 +20,10 @@ const App = () => {
         {({ isAuth }) =>
           isAuth ? (
             <Router>
+              
+              <Home path='/' />
+              <Home path='/pet/:id' />
+              <Detail path='/detail/:detailId' />
               <Favs path='/favorites' />
               <User path='/user' />
             </Router>
