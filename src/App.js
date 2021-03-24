@@ -8,7 +8,7 @@ import Favs from './components/pages/Favs'
 import NotRegisterUser from './components/pages/NotRegisterUser'
 import NavBar from './components/NavBar'
 import { Router } from '@reach/router'
-import Context from './Context'
+import {Consumer} from './Context'
 
 
 const App = () => {
@@ -16,7 +16,7 @@ const App = () => {
     <>
       <GlobalStyle />
       <Logo />
-      <Context.Consumer>
+      <Consumer>
         {({ isAuth }) =>
           isAuth ? (
             <Router>
@@ -24,17 +24,17 @@ const App = () => {
               <Home path='/' />
               <Home path='/pet/:id' />
               <Detail path='/detail/:detailId' />
-              <Favs path='/favorites' />
+              <Favs path='/favs' />
               <User path='/user' />
             </Router>
           ) : (
             <Router>
-              <NotRegisterUser path='/favorites' />
+              <NotRegisterUser path='/favs' />
               <NotRegisterUser path='/user' />
             </Router>
           )
         }
-      </Context.Consumer>
+      </Consumer>
 
       <NavBar />
     </>

@@ -8,21 +8,22 @@ import FavButton from '../FavButton'
 
 const PhotoCard = ({
   id,
+  liked,
   likes = 0,
   src = 'https://res.cloudinary.com/midudev/image/upload/w_150/v1555671700/category_rabbits.jpg'
 }) => {
-  const key = `like-${id}`
-  const [liked, setLiked] = useLocalStorage(key, false)
+ 
+ 
   const [show, element] = useNearScreen()
   const { mutation, mutationLoading, mutationError } = useMuationToogleLike()
-  const handleFavClick = useCallback(() => {
-    !liked && mutation({
+  const handleFavClick = () => {
+     mutation({
       variables: {
         input: { id }
       }
     })
-    setLiked(!liked)
-  }, [liked])
+    
+  }
 
   return (
     <Container ref={element}>

@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react'
+import { Context } from '../../Context'
+
 const User = () => {
-    return (  <div>User</div>);
+  const { removeAuth } = useContext(Context)
+  return (
+
+    <>
+      <h1>User</h1>
+      <button onClick={removeAuth}>Cerrar Sesion</button>
+    </>
+  )
 }
- 
-export default User;
+
+export default User
