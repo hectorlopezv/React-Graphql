@@ -1,28 +1,24 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 import { ImgWrapper, Img, Container, Link } from './styles'
 
-import { useLocalStorage } from '../../hooks/useLocalStorage'
 import { useNearScreen } from '../../hooks/useNearScreen'
 import { useMuationToogleLike } from '../../hooks/ToogleLikeMutation'
 import FavButton from '../FavButton'
-
+import PropTypes from 'prop-types'
 const PhotoCard = ({
   id,
   liked,
   likes = 0,
   src = 'https://res.cloudinary.com/midudev/image/upload/w_150/v1555671700/category_rabbits.jpg'
 }) => {
- 
- 
   const [show, element] = useNearScreen()
   const { mutation, mutationLoading, mutationError } = useMuationToogleLike()
   const handleFavClick = () => {
-     mutation({
+    mutation({
       variables: {
         input: { id }
       }
     })
-    
   }
 
   return (
@@ -42,3 +38,10 @@ const PhotoCard = ({
 }
 
 export default PhotoCard
+
+PhotoCard.propTypes = {
+  id: PropTypes.number.isRequired,
+  liked: PropTypes.bool.isRequired,
+  likes: PropTypes.number.isRequired,
+  src: PropTypes.string.isRequired
+}

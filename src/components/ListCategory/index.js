@@ -61,4 +61,4 @@ const ListCategory = () => {
   )
 }
 
-export default ListCategory
+export default React.memo(ListCategory)
